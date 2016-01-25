@@ -5,7 +5,7 @@ import numpy as np
 from nltk import ngrams
 import codecs
 import itertools
-
+import operator
 
 
 
@@ -162,6 +162,10 @@ bigramm = (generation(texte))
 
 
 
+def sortes(ma_list):
+    result = sorted(ma_list.items(), key=operator.itemgetter(1),reverse= True)
+    return result
+
 
 #print(bigramm["there"]["is"])
 #print(probas["there"])
@@ -176,9 +180,9 @@ def test_permutation(phrase):
     print(len(list_permuter))
     for phr in list_permuter:
         score[phr] = probasBigram(" ".join(phr),bigramm,probas)
-    pprint(score)
+    pprint(sortes(score))
    	   
     
-test_permutation("I like apple")    
+test_permutation("i like apple")    
 
 
