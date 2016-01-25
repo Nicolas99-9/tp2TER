@@ -4,6 +4,10 @@ from pprint import pprint
 import numpy as np
 from nltk import ngrams
 import codecs
+import itertools
+
+
+
 
 
 def generation2(list):
@@ -106,7 +110,7 @@ def generationMots(list):
           ma_hash = mon_dico[cle]
           eee = sample_from_discrete_distrib(ma_hash)
           ma_liste.append(eee)
-    pprint(ma_liste)
+    #pprint(ma_liste)
     return ma_liste
 
 def decodes(liste):
@@ -151,13 +155,30 @@ def probasBigram(texte,model,uni):
     
 
 bigramm = (generation(texte))
-print(probasBigram("there is a house mslls msls",bigramm,probas))
+#print(probasBigram("there is a house mslls msls",bigramm,probas))
 
 
 
-print(bigramm["there"]["is"])
-print(probas["there"])
 
-generationMots(bigramm)
+
+
+
+#print(bigramm["there"]["is"])
+#print(probas["there"])
+
+#generationMots(bigramm)
 
 #decodes(generationMots(listeFinal))
+
+def test_permutation(phrase):
+    list_permuter = list(itertools.permutations(phrase.split(" ")))
+    score = {}
+    print(len(list_permuter))
+    for phr in list_permuter:
+        score[phr] = probasBigram(" ".join(phr),bigramm,probas)
+    pprint(score)
+   	   
+    
+test_permutation("I like apple")    
+
+
